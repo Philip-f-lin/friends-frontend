@@ -57,7 +57,7 @@ const onSubmit = async () => {
 
 onMounted(async () => {
   if (route.query.showToast === "true") {
-    showErrorToast("尚未登入");
+    showSuccessToast("尚未登入");
   }
 })
 
