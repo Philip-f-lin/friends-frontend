@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import {useRoute, useRouter} from "vue-router";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import myAxios from "../plugins/myAxios";
 import {showSuccessToast} from "vant";
 import 'vant/es/toast/style';
@@ -55,6 +55,11 @@ const onSubmit = async () => {
   }
 };
 
+onMounted(async () => {
+  if (route.query.showToast === "true") {
+    showErrorToast("尚未登入");
+  }
+})
 
 </script>
 

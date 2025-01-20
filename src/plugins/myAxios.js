@@ -25,7 +25,9 @@ myAxios.interceptors.response.use(function (response) {
     // 未登入轉跳到登入畫面
     if(response?.data?.code === 40100){
         const redirectUrl = window.location.href
-        window.location.href = `/user/login?redirect=${redirectUrl}`;
+        window.location.href = `/user/login?redirect=${encodeURIComponent(
+            redirectUrl
+        )}&showToast=true`;
     }
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
