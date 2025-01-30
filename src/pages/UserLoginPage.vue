@@ -51,7 +51,7 @@ const onSubmit = async () => {
     const redirectUrl = route.query?.redirect as string ?? '/';
     window.location.href = redirectUrl;
   }else{
-    showSuccessToast('登入失敗');
+    showSuccessToast('登入失敗' + (res.description ? `， ${res.description}` : ''));
   }
 };
 
