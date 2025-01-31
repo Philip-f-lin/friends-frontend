@@ -5,6 +5,14 @@
     </template>
   </van-cell>
   <user-card-list :user-list="userList" :loading="loading"/>
+  <van-pagination v-model="currentPage" :total-items="50" :show-page-size="5">
+    <template #prev-text>
+      <van-icon name="arrow-left" />
+    </template>
+    <template #next-text>
+      <van-icon name="arrow" />
+    </template>
+  </van-pagination>
   <van-empty v-if="!userList || userList.length < 1" description="查無資料" />
 </template>
 
@@ -20,6 +28,7 @@ const isMatchMode = ref<boolean>(false);
 
 const userList = ref([]);
 const loading = ref(true);
+const currentPage = ref(1)
 
 const loadData = async () => {
   let userListData;
@@ -45,7 +54,7 @@ const loadData = async () => {
     userListData = await myAxios.get('/user/recommend', {
       params: {
         pageSize: 8,
-        pageNum: 1,
+        pageNum: currentPage.value,
       },
     })
         .then(function (response) {
