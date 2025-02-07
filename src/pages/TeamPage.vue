@@ -37,7 +37,7 @@ const onTabChange = (name) => {
   }
 }
 
-// 跳轉到加入隊伍畫面
+// 跳轉到創建隊伍畫面
 const toAddTeam = () => {
   router.push({
     path: "/team/add"
