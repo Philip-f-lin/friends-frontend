@@ -1,6 +1,6 @@
 <template>
   <template v-if="user">
-    <van-cell title="使用者" :value="user?.username" />
+    <van-cell title="使用者名稱" :value="user?.username" />
     <van-cell title="修改訊息" is-link to="/user/update" />
     <van-cell title="我創建的隊伍" is-link to="/user/team/create" />
     <van-cell title="我加入的隊伍" is-link to="/user/team/join" />
