@@ -5,7 +5,7 @@
         show-action
         placeholder="請輸入要搜索的標籤"
     />
-    <div style="font-size: 16px; font-weight: bold; color: #666; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div style="font-weight: bold; color: #666;">
       大家都在搜
     </div>
     <!-- 常用標籤 -->
@@ -56,4 +56,10 @@ const doSearchResult = () => {
 </script>
 
 <style scoped>
+.tags-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 可根據需要調整間距 */
+  margin-top: 16px;
+}
 </style>
