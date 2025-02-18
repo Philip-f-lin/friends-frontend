@@ -19,7 +19,7 @@
         />
         <van-field name="stepper" label="最大人數">
           <template #input>
-            <van-stepper v-model="addTeamData.maxNum" max = "10" min = "3"/>
+            <van-stepper v-model="addTeamData.maxNum" max = "10" min = "2"/>
           </template>
         </van-field>
         <van-field name="radio" label="隊伍狀態">
