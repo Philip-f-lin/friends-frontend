@@ -31,7 +31,7 @@
         <van-button v-if="team.userId !== currentUser?.id && team.hasJoin" size="small" plain
                     @click="doQuitTeam(team.id)">退出隊伍
         </van-button>
-        <van-button v-if="team.userId === currentUser?.id" size="small" plain type="danger"
+        <van-button v-if="team.userId === currentUser?.id " size="small" plain type="danger"
                     @click="doDeleteTeam(team.id)">解散隊伍
         </van-button>
       </template>
@@ -103,7 +103,7 @@ const doJoinTeam = async () => {
     showSuccessToast('加入成功');
     doJoinCancel();
   } else {
-    showSuccessToast('加入失敗' + (res.message ? `， ${res.message}` : ''));
+    showSuccessToast('加入失敗' + (res.description ? `， ${res.description}` : ''));
     doJoinCancel();
   }
 }
@@ -132,7 +132,7 @@ const doQuitTeam = async (id: number) => {
   if (res.code === 0) {
     showSuccessToast('退出成功');
   } else {
-    showSuccessToast('退出失敗' + (res.message ? `， ${res.message}` : ''));
+    showSuccessToast('退出失敗' + (res.description ? `， ${res.description}` : ''));
   }
 }
 
@@ -141,13 +141,13 @@ const doQuitTeam = async (id: number) => {
  * @param id
  */
 const doDeleteTeam = async (id: number) => {
-  const res = await myAxios.post('/team/delete', {
-    id,
+  const res = await myAxios.post('/team/quit', {
+    teamId: id
   });
   if (res.code === 0) {
     showSuccessToast('解散成功');
   } else {
-    showSuccessToast('解散失敗' + (res.message ? `， ${res.message}` : ''));
+    showSuccessToast('解散失敗' + (res.description ? `， ${res.description}` : ''));
   }
 }
 
