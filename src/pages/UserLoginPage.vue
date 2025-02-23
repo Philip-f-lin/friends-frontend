@@ -19,7 +19,12 @@
     </van-cell-group>
     <div style="margin: 16px;">
       <van-button round block type="primary" native-type="submit">
-        提交
+        登入
+      </van-button>
+    </div>
+    <div style="margin: 16px;">
+      <van-button round plain block type="primary" native-type="submit" @click="moveToRegister">
+        註冊帳號
       </van-button>
     </div>
   </van-form>
@@ -38,6 +43,10 @@ const route = useRoute();
 
 const userAccount = ref('');
 const userPassword = ref('');
+
+const moveToRegister = () => {
+  router.push('/user/register')
+}
 
 const onSubmit = async () => {
   const res = await myAxios.post('/user/login', {
