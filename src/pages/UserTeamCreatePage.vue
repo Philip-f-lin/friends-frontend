@@ -13,7 +13,8 @@ import {useRouter} from "vue-router";
 import TeamCardList from "../components/TeamCardList.vue";
 import {onMounted, ref} from "vue";
 import myAxios from "../plugins/myAxios";
-import {showToast} from "vant";
+import {showSuccessToast} from "vant";
+import {getCurrentUser} from "../services/user.ts";
 
 const router = useRouter();
 const searchText = ref('');
@@ -32,16 +33,23 @@ const teamList = ref([]);
  * @param val
  */
 const listTeam = async (val = '') => {
+  // 獲取當前使用者資訊
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    showSuccessToast('無法獲取使用者資訊，請重新登入');
+    return;
+  }
   const res = await myAxios.get("/team/list/my/create", {
     params: {
       searchText: val,
-      pageNum: 1
+      pageNum: 1,
+      userId: currentUser.id, // 使用使用者 ID 傳遞給後端
     },
   });
-  if (res?.code === 0){
-    teamList.value = res.data;
-  }else {
-    showToast('加載隊伍失敗，請重新整理');
+  if (res?.code === 0) {
+    teamList.value = res.data; // 更新隊伍列表
+  } else {
+    showSuccessToast('查詢失敗' + (res.description ? `， ${res.description}` : ''));
   }
 }
 
